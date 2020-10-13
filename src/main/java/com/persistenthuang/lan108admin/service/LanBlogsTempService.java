@@ -27,6 +27,8 @@ public interface LanBlogsTempService {
 
     LanBlogsTemp getAllViewMessageByID(int id);
 
+    LanBlogsTemp getAllEditorMessageByID(int id);
+
     LanBlogsTemp setPassBlogsByTempId(int tempId);
 
     int setUnPassBlogsBytempId(int tempId);

@@ -28,7 +28,7 @@ public class LanBlogsTempServiceImpl implements LanBlogsTempService {
     @Override
     public List<LanBlogsTemp> CreatListByAuthorID(int id) {
         QueryWrapper<LanBlogsTemp> queryWrapper = new QueryWrapper<>();
-        queryWrapper.select("id", "blogs_author_id", "blogs_title", "blogs_summary", "blogs_cover", "blogs_content", "blogs_column");
+        queryWrapper.select("id", "blogs_author_id", "blogs_title", "blogs_summary", "blogs_cover");
         queryWrapper.
                 eq("blogs_author_id", id)
                 .eq("blogs_status", BlogStatus.TEMP);
@@ -38,7 +38,7 @@ public class LanBlogsTempServiceImpl implements LanBlogsTempService {
     @Override
     public List<LanBlogsTemp> CreatListSubmitByAuthorID(int id) {
         QueryWrapper<LanBlogsTemp> queryWrapper = new QueryWrapper<>();
-        queryWrapper.select("id", "blogs_author_id", "blogs_title", "blogs_summary", "blogs_cover", "blogs_content", "blogs_column");
+        queryWrapper.select("id", "blogs_author_id", "blogs_title", "blogs_summary", "blogs_cover");
         queryWrapper.
                 eq("blogs_author_id", id)
                 .eq("blogs_status", BlogStatus.REVIEW);
@@ -179,6 +179,14 @@ public class LanBlogsTempServiceImpl implements LanBlogsTempService {
     public LanBlogsTemp getAllViewMessageByID(int id) {
         QueryWrapper<LanBlogsTemp> queryWrapper = new QueryWrapper<>();
         queryWrapper.select("id", "blogs_author_id", "blogs_create_data", "blogs_title", "blogs_summary", "blogs_cover", "blogs_html", "blogs_column");
+        queryWrapper.eq("id", id);
+        return lanBlogsTempMapper.selectOne(queryWrapper);
+    }
+
+    @Override
+    public LanBlogsTemp getAllEditorMessageByID(int id) {
+        QueryWrapper<LanBlogsTemp> queryWrapper = new QueryWrapper<>();
+        queryWrapper.select("id", "blogs_author_id", "blogs_create_data", "blogs_title", "blogs_summary", "blogs_cover", "blogs_html", "blogs_content", "blogs_column");
         queryWrapper.eq("id", id);
         return lanBlogsTempMapper.selectOne(queryWrapper);
     }

@@ -14,16 +14,21 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginInterceptor implements HandlerInterceptor {
     //登录拦截器
     @Override
-    public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
-        // 放行 options 请求，否则无法让前端带上自定义的 header 信息，
-        // 导致 sessionID 改变，shiro 验证失败
-        if (HttpMethod.OPTIONS.toString().equals(httpServletRequest.getMethod())) {
-            httpServletResponse.setStatus(HttpStatus.NO_CONTENT.value());
-            return true;
-        }
+    public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) {
+        Subject subject = null;
+        try {
+            // 放行 options 请求，否则无法让前端带上自定义的 header 信息，
+            // 导致 sessionID 改变，shiro 验证失败
+            if (HttpMethod.OPTIONS.toString().equals(httpServletRequest.getMethod())) {
+                httpServletResponse.setStatus(HttpStatus.NO_CONTENT.value());
+                return true;
+            }
 
-        Subject subject = SecurityUtils.getSubject();
-        // 使用 shiro 验证
+            subject = SecurityUtils.getSubject();
+            // 使用 shiro 验证
+        } catch (Exception e) {
+
+        }
         return subject.isAuthenticated() || subject.isRemembered();
     }
 }

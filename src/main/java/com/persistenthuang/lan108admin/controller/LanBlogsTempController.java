@@ -57,6 +57,22 @@ public class LanBlogsTempController {
     }
 
     /**
+     * 返回编辑文字内容
+     *
+     * @param jsonObject
+     * @return
+     */
+    @CrossOrigin
+    @RequestMapping("/api/blogTemp/editorTempBlog")
+    @ResponseBody
+    public String editorTempBlog(@RequestBody JSONObject jsonObject) {
+        int id = jsonObject.getInteger("id");
+        LanBlogsTemp lanBlogsTemp = lanBlogsTempService.getAllEditorMessageByID(id);
+        log.info("预览博客信息:" + lanBlogsTemp.toString());
+        return JSONObject.toJSONString(lanBlogsTemp);
+    }
+
+    /**
      * 根据作者id和文章id删除文章
      *
      * @param jsonObject
