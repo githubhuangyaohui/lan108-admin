@@ -27,7 +27,7 @@ public class LanAuthorServiceImpl implements LanAuthorService {
     public LanAuthor getAllAuthorMessageById(int authorID) {
         QueryWrapper<LanAuthor> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("id", authorID);
-        queryWrapper.select("id", "author_show_name", "author_email");
+        queryWrapper.select("id", "author_show_name", "author_email", "author_create_data");
         LanAuthor lanAuthor = lanAuthorMapper.selectOne(queryWrapper);
         return lanAuthor;
     }

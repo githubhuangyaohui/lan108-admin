@@ -38,6 +38,21 @@ public class LanAuthorController {
     }
 
     /**
+     * 根据作者ID获取用户全部信息
+     *
+     * @param jsonObject
+     * @return
+     */
+    @CrossOrigin
+    @RequestMapping("/api/view/getAuthorMessage")
+    @ResponseBody
+    public String getAuthorMessage(@RequestBody JSONObject jsonObject) {
+        int authorID = jsonObject.getInteger("authorID");
+        LanAuthor authorMessage = lanAuthorService.getAllAuthorMessageById(authorID);
+        return JSONObject.toJSONString(authorMessage);
+    }
+
+    /**
      * 根据userId获取作者信息
      *
      * @param userId

@@ -122,4 +122,19 @@ public class LanBlogsController {
         log.info("获取个人中心文章列表:" + roleBlogs.toString());
         return JSONObject.toJSONString(roleBlogs);
     }
+
+    /**
+     * 获取作者文章列表
+     *
+     * @param jsonObject
+     * @return JSON字符串
+     */
+    @CrossOrigin
+    @RequestMapping("/api/view/getAuthorList")
+    @ResponseBody
+    public String getAuthorBlogs(@RequestBody JSONObject jsonObject) {
+        int authorID = jsonObject.getInteger("authorID");
+        List<LanBlogs> roleBlogs = this.lanBlogsService.getBlogsByAuthorID(authorID);
+        return JSONObject.toJSONString(roleBlogs);
+    }
 }

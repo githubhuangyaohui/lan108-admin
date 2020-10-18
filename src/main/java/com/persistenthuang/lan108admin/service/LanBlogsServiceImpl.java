@@ -30,6 +30,7 @@ public class LanBlogsServiceImpl implements LanBlogsService {
         QueryWrapper<LanBlogs> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("id", id);
         queryWrapper.select("id", "blogs_author_id", "blogs_create_data", "blogs_title", "blogs_summary", "blogs_cover", "blogs_html", "blogs_column");
+        queryWrapper.orderByDesc("blogs_create_data");
         return lanBlogsMapper.selectOne(queryWrapper);
     }
 
@@ -61,6 +62,7 @@ public class LanBlogsServiceImpl implements LanBlogsService {
         QueryWrapper<LanBlogs> queryWrapper = new QueryWrapper<>();
         queryWrapper.select("id", "blogs_title", "blogs_column", "blogs_author_id", "blogs_cover", "blogs_summary");
         queryWrapper.eq("blogs_status", BlogStatus.FIRST);
+        queryWrapper.orderByDesc("blogs_create_data");
         return lanBlogsMapper.selectList(queryWrapper);
     }
 
@@ -75,6 +77,7 @@ public class LanBlogsServiceImpl implements LanBlogsService {
         QueryWrapper<LanBlogs> queryWrapper = new QueryWrapper<>();
         queryWrapper.like("blogs_title", keywords);
         queryWrapper.select("id", "blogs_title", "blogs_summary", "blogs_cover", "blogs_author_id");
+        queryWrapper.orderByDesc("blogs_create_data");
         return lanBlogsMapper.selectList(queryWrapper);
     }
 
@@ -89,6 +92,7 @@ public class LanBlogsServiceImpl implements LanBlogsService {
         QueryWrapper<LanBlogs> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("blogs_column", roleId);
         queryWrapper.select("id", "blogs_title", "blogs_cover", "blogs_summary", "blogs_author_id");
+        queryWrapper.orderByDesc("blogs_create_data");
         return lanBlogsMapper.selectList(queryWrapper);
     }
 
@@ -103,6 +107,7 @@ public class LanBlogsServiceImpl implements LanBlogsService {
         QueryWrapper<LanBlogs> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("blogs_author_id", authorID);
         queryWrapper.select("id", "blogs_title", "blogs_cover", "blogs_summary", "blogs_author_id");
+        queryWrapper.orderByDesc("blogs_create_data");
         return lanBlogsMapper.selectList(queryWrapper);
     }
 
@@ -119,6 +124,7 @@ public class LanBlogsServiceImpl implements LanBlogsService {
             QueryWrapper<LanBlogs> queryWrapper = new QueryWrapper<>();
             queryWrapper.select("id", "blogs_title", "blogs_cover", "blogs_summary", "blogs_author_id");
             queryWrapper.in("id", list);
+            queryWrapper.orderByDesc("blogs_create_data");
             return lanBlogsMapper.selectList(queryWrapper);
         } catch (Exception e) {
             return null;

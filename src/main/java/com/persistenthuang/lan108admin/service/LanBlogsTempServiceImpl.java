@@ -32,6 +32,7 @@ public class LanBlogsTempServiceImpl implements LanBlogsTempService {
         queryWrapper.
                 eq("blogs_author_id", id)
                 .eq("blogs_status", BlogStatus.TEMP);
+        queryWrapper.orderByDesc("blogs_create_data");
         return lanBlogsTempMapper.selectList(queryWrapper);
     }
 
@@ -42,6 +43,7 @@ public class LanBlogsTempServiceImpl implements LanBlogsTempService {
         queryWrapper.
                 eq("blogs_author_id", id)
                 .eq("blogs_status", BlogStatus.REVIEW);
+        queryWrapper.orderByDesc("blogs_create_data");
         return lanBlogsTempMapper.selectList(queryWrapper);
     }
 
@@ -134,6 +136,7 @@ public class LanBlogsTempServiceImpl implements LanBlogsTempService {
         queryWrapper
                 .eq("blogs_column", RoleID)
                 .eq("blogs_status", BlogStatus.REVIEW);
+        queryWrapper.orderByDesc("blogs_create_data");
         return lanBlogsTempMapper.selectList(queryWrapper);
     }
 
@@ -150,6 +153,7 @@ public class LanBlogsTempServiceImpl implements LanBlogsTempService {
         queryWrapper
                 .eq("blogs_column", RoleID)
                 .eq("blogs_status", BlogStatus.SUCCESS);
+        queryWrapper.orderByDesc("blogs_create_data");
         return lanBlogsTempMapper.selectList(queryWrapper);
     }
 
@@ -166,6 +170,7 @@ public class LanBlogsTempServiceImpl implements LanBlogsTempService {
         queryWrapper
                 .eq("blogs_column", RoleID)
                 .eq("blogs_status", BlogStatus.FAIL);
+        queryWrapper.orderByDesc("blogs_create_data");
         return lanBlogsTempMapper.selectList(queryWrapper);
     }
 
